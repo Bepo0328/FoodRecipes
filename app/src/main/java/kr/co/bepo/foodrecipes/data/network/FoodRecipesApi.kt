@@ -1,4 +1,4 @@
-package kr.co.bepo.foodrecipes
+package kr.co.bepo.foodrecipes.data.network
 
 import kr.co.bepo.foodrecipes.models.FoodRecipe
 import retrofit2.Response

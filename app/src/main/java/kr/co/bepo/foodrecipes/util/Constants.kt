@@ -1,4 +1,6 @@
-package kr.co.bepo.foodrecipes
+package kr.co.bepo.foodrecipes.util
+
+import kr.co.bepo.foodrecipes.BuildConfig
 
 class Constants {
 
