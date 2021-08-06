@@ -27,6 +27,7 @@ class RecipesAdapter : RecyclerView.Adapter<RecipesAdapter.RecipesViewHolder>() 
 
             recipeImageView.load(result.image) {
                 crossfade(600)
+                error(R.drawable.ic_error_placeholder)
             }
 
             titleTextView.text = result.title
