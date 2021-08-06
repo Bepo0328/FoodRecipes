@@ -5,9 +5,11 @@
       <map>
         <entry key="..\:/Android App/FoodRecipes/app/src/main/res/drawable/ic_error_placeholder.xml" value="0.34814814814814815" />
         <entry key="..\:/Android App/FoodRecipes/app/src/main/res/layout/activity_main.xml" value="0.35052083333333334" />
+        <entry key="..\:/Android App/FoodRecipes/app/src/main/res/layout/bottom_sheet_recipes.xml" value="0.3055555555555556" />
         <entry key="..\:/Android App/FoodRecipes/app/src/main/res/layout/fragment_favorite_recipes.xml" value="0.3541666666666667" />
         <entry key="..\:/Android App/FoodRecipes/app/src/main/res/layout/fragment_food_joke.xml" value="0.35052083333333334" />
         <entry key="..\:/Android App/FoodRecipes/app/src/main/res/layout/fragment_recipes.xml" value="0.35052083333333334" />
+        <entry key="..\:/Android App/FoodRecipes/app/src/main/res/layout/fragment_recipes_bottom_sheet.xml" value="0.3541666666666667" />
         <entry key="..\:/Android App/FoodRecipes/app/src/main/res/layout/placeholder_row_layout.xml" value="0.19427083333333334" />
         <entry key="..\:/Android App/FoodRecipes/app/src/main/res/layout/recipes_row_layout.xml" value="0.4079110012360939" />
         <entry key="..\:/Android App/FoodRecipes/app/src/main/res/menu/bottom_nav_menu.xml" value="0.3541666666666667" />

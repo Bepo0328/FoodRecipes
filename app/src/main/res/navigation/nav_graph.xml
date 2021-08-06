@@ -9,7 +9,17 @@
         android:id="@+id/recipesFragment"
         android:name="kr.co.bepo.foodrecipes.ui.fragment.recipes.RecipesFragment"
         android:label="@string/recipes"
-        tools:layout="@layout/fragment_recipes" />
+        tools:layout="@layout/fragment_recipes">
+
+        <action
+            android:id="@+id/action_recipesFragment_to_recipesBottomSheet"
+            app:destination="@id/recipesBottomSheet" />
+        <argument
+            android:name="backFromBottomSheet"
+            app:argType="boolean"
+            android:defaultValue="false" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/favoriteRecipesFragment"
@@ -22,5 +32,17 @@
         android:name="kr.co.bepo.foodrecipes.ui.fragment.foodjoke.FoodJokeFragment"
         android:label="@string/food_joke"
         tools:layout="@layout/fragment_food_joke" />
+
+    <dialog
+        android:id="@+id/recipesBottomSheet"
+        android:name="kr.co.bepo.foodrecipes.ui.fragment.recipes.bottomsheet.RecipesBottomSheet"
+        android:label="bottom_sheet_recipes"
+        tools:layout="@layout/bottom_sheet_recipes">
+
+        <action
+            android:id="@+id/action_recipesBottomSheet_to_recipesFragment"
+            app:destination="@id/recipesFragment" />
+
+    </dialog>
 
 </navigation>

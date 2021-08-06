@@ -8,9 +8,12 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import kr.co.bepo.foodrecipes.R
 import kr.co.bepo.foodrecipes.adapter.RecipesAdapter
 import kr.co.bepo.foodrecipes.data.database.RecipesEntity
 import kr.co.bepo.foodrecipes.databinding.FragmentRecipesBinding
@@ -40,6 +43,8 @@ class RecipesFragment : Fragment() {
     private var _binding: FragmentRecipesBinding? = null
     private val binding get() = _binding!!
 
+    private val args: RecipesFragmentArgs by navArgs()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -55,8 +60,15 @@ class RecipesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupRecyclerView()
+        initViews()
         readDatabase()
+    }
+
+    private fun initViews() = with(binding) {
+        setupRecyclerView()
+        recipesFloatingActionButton.setOnClickListener {
+            findNavController().navigate(R.id.action_recipesFragment_to_recipesBottomSheet)
+        }
     }
 
     private fun setupRecyclerView() = with(binding) {
@@ -68,7 +80,7 @@ class RecipesFragment : Fragment() {
     private fun readDatabase() {
         lifecycleScope.launch {
             mainViewModel.readRecipes.observeOnce(viewLifecycleOwner) { database ->
-                if (database.isNotEmpty()) {
+                if (database.isNotEmpty() && !args.backFromBottomSheet) {
                     adapter.setData(database[0].foodRecipe)
                     hideShimmerEffect()
                 } else {
