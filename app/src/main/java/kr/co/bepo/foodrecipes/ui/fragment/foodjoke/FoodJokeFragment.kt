@@ -1,21 +1,21 @@
-package kr.co.bepo.foodrecipes
+package kr.co.bepo.foodrecipes.ui.fragment.foodjoke
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kr.co.bepo.foodrecipes.databinding.FragmentFavoriteRecipesBinding
+import kr.co.bepo.foodrecipes.databinding.FragmentFoodJokeBinding
 
-class FavoriteRecipesFragment : Fragment() {
+class FoodJokeFragment : Fragment() {
 
-    private var _binding: FragmentFavoriteRecipesBinding? = null
+    private var _binding: FragmentFoodJokeBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View = FragmentFavoriteRecipesBinding.inflate(inflater, container, false)
+    ): View = FragmentFoodJokeBinding.inflate(inflater, container, false)
         .also { _binding = it }
         .root
 

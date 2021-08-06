@@ -18,6 +18,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "SPOONACULAR_API_KEY", spoonacular_api_key)
     }
 
     buildTypes {
@@ -93,4 +94,8 @@ dependencies {
 
     // Jsoup
     implementation "org.jsoup:jsoup:$jsoupVersion"
+}
+
+kapt {
+    correctErrorTypes true
 }

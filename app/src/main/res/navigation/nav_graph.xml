@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/recipesFragment"
-        android:name="kr.co.bepo.foodrecipes.RecipesFragment"
+        android:name="kr.co.bepo.foodrecipes.ui.fragment.recipes.RecipesFragment"
         android:label="@string/recipes"
         tools:layout="@layout/fragment_recipes" />
 
     <fragment
         android:id="@+id/favoriteRecipesFragment"
-        android:name="kr.co.bepo.foodrecipes.FavoriteRecipesFragment"
+        android:name="kr.co.bepo.foodrecipes.ui.fragment.favorites.FavoriteRecipesFragment"
         android:label="@string/favorite_recipes"
         tools:layout="@layout/fragment_favorite_recipes" />
 
     <fragment
         android:id="@+id/foodJokeFragment"
-        android:name="kr.co.bepo.foodrecipes.FoodJokeFragment"
+        android:name="kr.co.bepo.foodrecipes.ui.fragment.foodjoke.FoodJokeFragment"
         android:label="@string/food_joke"
         tools:layout="@layout/fragment_food_joke" />
 

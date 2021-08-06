@@ -1,13 +1,13 @@
-package kr.co.bepo.foodrecipes
+package kr.co.bepo.foodrecipes.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import kr.co.bepo.foodrecipes.R
 import kr.co.bepo.foodrecipes.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
