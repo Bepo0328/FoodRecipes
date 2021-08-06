@@ -71,10 +71,10 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="36dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/heartTextView"
-                app:layout_constraintStart_toStartOf="@+id/heartTextView"
+                app:layout_constraintEnd_toStartOf="@id/clockImageView"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toStartOf="@+id/descriptionTextView"
                 app:layout_constraintTop_toBottomOf="@+id/descriptionTextView"
-                app:layout_constraintVertical_bias="0.0"
                 app:srcCompat="@drawable/ic_heart"
                 app:tint="@color/red"
                 tools:ignore="ContentDescription" />
@@ -85,7 +85,8 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:textColor="@color/red"
-                app:layout_constraintStart_toStartOf="@+id/descriptionTextView"
+                app:layout_constraintEnd_toEndOf="@id/heartImageView"
+                app:layout_constraintStart_toStartOf="@id/heartImageView"
                 app:layout_constraintTop_toBottomOf="@+id/heartImageView"
                 tools:text="100" />
 
@@ -93,9 +94,10 @@
                 android:id="@+id/clockImageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
                 app:layout_constraintBottom_toBottomOf="@id/heartImageView"
-                app:layout_constraintEnd_toEndOf="@+id/clockTextView"
-                app:layout_constraintStart_toStartOf="@+id/clockTextView"
+                app:layout_constraintEnd_toStartOf="@id/leafImageView"
+                app:layout_constraintStart_toEndOf="@id/heartImageView"
                 app:layout_constraintTop_toTopOf="@id/heartImageView"
                 app:srcCompat="@drawable/ic_clock"
                 app:tint="@color/yellow"
@@ -105,20 +107,20 @@
                 android:id="@+id/clockTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
                 android:textAlignment="center"
                 android:textColor="@color/yellow"
-                app:layout_constraintStart_toEndOf="@+id/heartTextView"
+                app:layout_constraintEnd_toEndOf="@id/clockImageView"
+                app:layout_constraintStart_toStartOf="@id/clockImageView"
                 app:layout_constraintTop_toBottomOf="@id/clockImageView"
-                tools:text="100" />
+                tools:text="45" />
 
             <ImageView
                 android:id="@+id/leafImageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="@id/clockImageView"
-                app:layout_constraintEnd_toEndOf="@+id/leafTextView"
-                app:layout_constraintStart_toStartOf="@+id/leafTextView"
+                app:layout_constraintEnd_toEndOf="@id/descriptionTextView"
+                app:layout_constraintStart_toEndOf="@id/clockImageView"
                 app:layout_constraintTop_toTopOf="@id/clockImageView"
                 app:srcCompat="@drawable/ic_leaf"
                 tools:ignore="ContentDescription"
@@ -128,11 +130,11 @@
                 android:id="@+id/leafTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
+                android:text="@string/vegan"
                 android:textAlignment="center"
-                app:layout_constraintStart_toEndOf="@+id/clockTextView"
+                app:layout_constraintEnd_toEndOf="@id/leafImageView"
+                app:layout_constraintStart_toStartOf="@id/leafImageView"
                 app:layout_constraintTop_toBottomOf="@id/leafImageView"
-                tools:text="100"
                 tools:textColor="@color/green" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

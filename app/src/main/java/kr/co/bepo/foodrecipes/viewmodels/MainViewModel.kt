@@ -1,4 +1,4 @@
-package kr.co.bepo.foodrecipes
+package kr.co.bepo.foodrecipes.viewmodels
 
 import android.app.Application
 import android.content.Context
