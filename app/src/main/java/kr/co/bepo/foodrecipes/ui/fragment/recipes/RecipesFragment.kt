@@ -1,6 +1,7 @@
 package kr.co.bepo.foodrecipes.ui.fragment.recipes
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,19 +13,19 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kr.co.bepo.foodrecipes.R
 import kr.co.bepo.foodrecipes.adapter.RecipesAdapter
 import kr.co.bepo.foodrecipes.data.database.RecipesEntity
 import kr.co.bepo.foodrecipes.databinding.FragmentRecipesBinding
 import kr.co.bepo.foodrecipes.models.FoodRecipe
-import kr.co.bepo.foodrecipes.util.NetworkResult
-import kr.co.bepo.foodrecipes.util.observeOnce
-import kr.co.bepo.foodrecipes.util.toInvisible
-import kr.co.bepo.foodrecipes.util.toVisible
+import kr.co.bepo.foodrecipes.util.*
 import kr.co.bepo.foodrecipes.viewmodels.MainViewModel
 import kr.co.bepo.foodrecipes.viewmodels.RecipesViewModel
 
+@ExperimentalCoroutinesApi
 @AndroidEntryPoint
 class RecipesFragment : Fragment() {
 
@@ -45,6 +46,8 @@ class RecipesFragment : Fragment() {
 
     private val args: RecipesFragmentArgs by navArgs()
 
+    private val networkListener: NetworkListener by lazy { NetworkListener() }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -61,13 +64,34 @@ class RecipesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initViews()
-        readDatabase()
+        networkStatus()
     }
 
     private fun initViews() = with(binding) {
         setupRecyclerView()
+
         recipesFloatingActionButton.setOnClickListener {
-            findNavController().navigate(R.id.action_recipesFragment_to_recipesBottomSheet)
+            if (recipesViewModel.networkStatus) {
+                findNavController().navigate(R.id.action_recipesFragment_to_recipesBottomSheet)
+            } else {
+                recipesViewModel.showNetworkStatus()
+            }
+        }
+    }
+
+    private fun networkStatus() {
+        recipesViewModel.readBackOnline.observe(viewLifecycleOwner) {
+            recipesViewModel.backOnline = it
+        }
+
+        lifecycleScope.launch {
+            networkListener.checkNetworkAvailability(requireContext())
+                .collect { status ->
+                    Log.d("NetworkListener", status.toString())
+                    recipesViewModel.networkStatus = status
+                    recipesViewModel.showNetworkStatus()
+                    readDatabase()
+                }
         }
     }
 
@@ -81,6 +105,7 @@ class RecipesFragment : Fragment() {
         lifecycleScope.launch {
             mainViewModel.readRecipes.observeOnce(viewLifecycleOwner) { database ->
                 if (database.isNotEmpty() && !args.backFromBottomSheet) {
+                    Log.d("RecipesFragment", "readDatabase called!")
                     adapter.setData(database[0].foodRecipe)
                     hideShimmerEffect()
                 } else {
@@ -91,6 +116,7 @@ class RecipesFragment : Fragment() {
     }
 
     private fun requestApiData() {
+        Log.d("RecipesFragment", "requestApiData called!")
         mainViewModel.getRecipes(recipesViewModel.applyQueries())
         mainViewModel.recipesResponse.observe(viewLifecycleOwner) { response ->
             when (response) {
