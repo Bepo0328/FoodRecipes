@@ -8,6 +8,18 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <!--  Deep Purple 700  -->
+    <color name="primaryColor">#673ab7</color>
+    <color name="primaryLightColor">#9a67ea</color>
+    <color name="primaryDarkColor">#320b86</color>
+    <color name="primaryTextColor">#ffffff</color>
+
+    <!--  Teal A 400  -->
+    <color name="secondaryColor">#1de9b6</color>
+    <color name="secondaryLightColor">#6effe8</color>
+    <color name="secondaryDarkColor">#00b686</color>
+    <color name="secondaryTextColor">#000000</color>
+
     <color name="lightGray">#F9F9F9</color>
     <color name="mediumGray">#D1D1D1</color>
     <color name="lightMediumGray">#80D1D1D1</color>
@@ -18,9 +30,12 @@
     <color name="yellow">#FFC114</color>
     <color name="green">#00C980</color>
 
-    <!-- Custom Chip Style-->
+    <!--  Custom Chip Style  -->
     <color name="checkedChipBackgroundColor">#206200EA</color>
     <color name="chipBackgroundColor">@color/lightGray</color>
-    <color name="checkedChipTextColor">@color/purple_500</color>
+    <color name="checkedChipTextColor">@color/primaryColor</color>
     <color name="chipTextColor">@color/darkGray</color>
+
+    <color name="actionBarBackgroundColor">@color/primaryColor</color>
+
 </resources>

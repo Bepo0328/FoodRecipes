@@ -63,6 +63,7 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
         super.onViewCreated(view, savedInstanceState)
 
         initViews()
+        initRecyclerView()
         networkStatus()
     }
 
@@ -88,7 +89,6 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
 
     private fun initViews() = with(binding) {
         setHasOptionsMenu(true)
-        setupRecyclerView()
 
         recipesFloatingActionButton.setOnClickListener {
             if (recipesViewModel.networkStatus) {
@@ -115,7 +115,7 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
         }
     }
 
-    private fun setupRecyclerView() = with(binding) {
+    private fun initRecyclerView() = with(binding) {
         shimmerRecyclerView.adapter = adapter
         shimmerRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         showShimmerEffect()

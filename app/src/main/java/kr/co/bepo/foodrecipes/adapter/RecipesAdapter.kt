@@ -1,11 +1,10 @@
 package kr.co.bepo.foodrecipes.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
@@ -13,7 +12,9 @@ import kr.co.bepo.foodrecipes.R
 import kr.co.bepo.foodrecipes.databinding.RecipesRowLayoutBinding
 import kr.co.bepo.foodrecipes.models.FoodRecipe
 import kr.co.bepo.foodrecipes.models.Result
+import kr.co.bepo.foodrecipes.ui.fragment.recipes.RecipesFragmentDirections
 import kr.co.bepo.foodrecipes.util.RecipesDiffUtil
+import org.jsoup.Jsoup
 
 class RecipesAdapter : RecyclerView.Adapter<RecipesAdapter.RecipesViewHolder>() {
 
@@ -24,45 +25,43 @@ class RecipesAdapter : RecyclerView.Adapter<RecipesAdapter.RecipesViewHolder>() 
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(result: Result) = with(binding) {
-
             recipeImageView.load(result.image) {
                 crossfade(600)
                 error(R.drawable.ic_error_placeholder)
             }
-
             titleTextView.text = result.title
-            descriptionTextView.text = result.summary
+
+            val desc = Jsoup.parse(result.summary).text()
+            descriptionTextView.text = desc
 
             heartTextView.text = result.aggregateLikes.toString()
             clockTextView.text = result.readyInMinutes.toString()
 
-            applyVeganColor(leafTextView, result.vegan)
-            applyVeganColor(leafImageView, result.vegan)
-        }
+            if (result.vegan) {
+                leafImageView.setColorFilter(
+                    ContextCompat.getColor(
+                        leafImageView.context,
+                        R.color.green
+                    )
+                )
+                leafTextView.setTextColor(
+                    ContextCompat.getColor(
+                        leafTextView.context,
+                        R.color.green
+                    )
+                )
+            }
 
-        private fun applyVeganColor(view: View, vegan: Boolean) {
-            if (vegan) {
-                when (view) {
-                    is TextView -> {
-                        view.setTextColor(
-                            ContextCompat.getColor(
-                                view.context,
-                                R.color.green
-                            )
-                        )
-                    }
-                    is ImageView -> {
-                        view.setColorFilter(
-                            ContextCompat.getColor(
-                                view.context,
-                                R.color.green
-                            )
-                        )
-                    }
+            root.setOnClickListener {
+                try {
+                    val action =
+                        RecipesFragmentDirections.actionRecipesFragmentToDetailsActivity(result)
+                    root.findNavController().navigate(action)
+                } catch (e: Exception) {
+                    Log.d("onRecipeClickListener", e.toString())
                 }
             }
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipesViewHolder =

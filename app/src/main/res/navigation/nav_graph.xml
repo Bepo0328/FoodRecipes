@@ -14,10 +14,15 @@
         <action
             android:id="@+id/action_recipesFragment_to_recipesBottomSheet"
             app:destination="@id/recipesBottomSheet" />
+
         <argument
             android:name="backFromBottomSheet"
-            app:argType="boolean"
-            android:defaultValue="false" />
+            android:defaultValue="false"
+            app:argType="boolean" />
+
+        <action
+            android:id="@+id/action_recipesFragment_to_detailsActivity"
+            app:destination="@id/detailsActivity" />
 
     </fragment>
 
@@ -44,5 +49,17 @@
             app:destination="@id/recipesFragment" />
 
     </dialog>
+
+    <activity
+        android:id="@+id/detailsActivity"
+        android:name="kr.co.bepo.foodrecipes.ui.DetailsActivity"
+        android:label="@string/details"
+        tools:layout="@layout/activity_details">
+
+        <argument
+            android:name="result"
+            app:argType="kr.co.bepo.foodrecipes.models.Result" />
+
+    </activity>
 
 </navigation>
