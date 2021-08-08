@@ -17,7 +17,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kr.co.bepo.foodrecipes.R
 import kr.co.bepo.foodrecipes.adapter.RecipesAdapter
-import kr.co.bepo.foodrecipes.data.database.RecipesEntity
+import kr.co.bepo.foodrecipes.data.database.entities.RecipesEntity
 import kr.co.bepo.foodrecipes.databinding.FragmentRecipesBinding
 import kr.co.bepo.foodrecipes.models.FoodRecipe
 import kr.co.bepo.foodrecipes.util.*
