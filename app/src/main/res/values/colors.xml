@@ -36,8 +36,17 @@
     <color name="checkedChipTextColor">@color/primaryColor</color>
     <color name="chipTextColor">@color/darkGray</color>
 
+    <!--  CustomTabLayoutStyle  -->
     <color name="actionBarBackgroundColor">@color/primaryColor</color>
+
+    <!--  Ingredients Row Layout  -->
     <color name="strokeColor">@color/lightMediumGray</color>
     <color name="cardBackgroundColor">@color/white</color>
+    <color name="cardBackgroundLightColor">#10673ab7</color>
     <color name="titleColor">@color/darker</color>
+
+    <!--  Favorite Recipes Adapter  -->
+    <color name="statusBarColor">@color/primaryDarkColor</color>
+    <color name="contextualStatusBarColor">@color/darker</color>
+    <color name="contextualActionBarColor">@color/dark</color>
 </resources>

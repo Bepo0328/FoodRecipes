@@ -1,13 +1,13 @@
 package kr.co.bepo.foodrecipes.ui.fragment.favorites
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import kr.co.bepo.foodrecipes.R
 import kr.co.bepo.foodrecipes.adapter.FavoriteRecipesAdapter
 import kr.co.bepo.foodrecipes.databinding.FragmentFavoriteRecipesBinding
 import kr.co.bepo.foodrecipes.util.toInvisible
@@ -20,8 +20,13 @@ class FavoriteRecipesFragment : Fragment() {
     private var _binding: FragmentFavoriteRecipesBinding? = null
     private val binding get() = _binding!!
 
-    private val adapter: FavoriteRecipesAdapter by lazy { FavoriteRecipesAdapter() }
     private val mainViewModel: MainViewModel by viewModels()
+    private val adapter: FavoriteRecipesAdapter by lazy {
+        FavoriteRecipesAdapter(
+            requireActivity(),
+            mainViewModel
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,6 +38,7 @@ class FavoriteRecipesFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        adapter.clearContextualActionMode()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -43,6 +49,8 @@ class FavoriteRecipesFragment : Fragment() {
     }
 
     private fun initViews() = with(binding) {
+        setHasOptionsMenu(true)
+
         mainViewModel.readFavoriteRecipes.observe(viewLifecycleOwner) { favoritesEntity ->
             if (favoritesEntity.isNullOrEmpty()) {
                 noDataImageView.toVisible()
@@ -60,5 +68,26 @@ class FavoriteRecipesFragment : Fragment() {
     private fun setupRecyclerView() = with(binding) {
         favoriteRecipesRecyclerView.adapter = adapter
         favoriteRecipesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.favorite_recipes_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.delete_all_favorite_recipe_menu) {
+            mainViewModel.deleteAllFavoriteRecipes()
+            showSnackBar()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun showSnackBar() = with(binding) {
+        Snackbar.make(
+            root,
+            "All recipes removed.",
+            Snackbar.LENGTH_SHORT
+        ).setAction("Okay") {}
+            .show()
     }
 }
