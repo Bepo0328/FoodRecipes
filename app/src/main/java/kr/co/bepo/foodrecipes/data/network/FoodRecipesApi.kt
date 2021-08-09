@@ -1,8 +1,10 @@
 package kr.co.bepo.foodrecipes.data.network
 
+import kr.co.bepo.foodrecipes.models.FoodJoke
 import kr.co.bepo.foodrecipes.models.FoodRecipe
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Query
 import retrofit2.http.QueryMap
 
 interface FoodRecipesApi {
@@ -16,4 +18,9 @@ interface FoodRecipesApi {
     suspend fun searchRecipes(
         @QueryMap searchQuery: Map<String, String>,
     ): Response<FoodRecipe>
+
+    @GET("/food/jokes/random")
+    suspend fun getFoodJoke(
+        @Query("apiKey") apiKey: String
+    ): Response<FoodJoke>
 }

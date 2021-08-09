@@ -1,6 +1,7 @@
 package kr.co.bepo.foodrecipes.data
 
 import kr.co.bepo.foodrecipes.data.network.FoodRecipesApi
+import kr.co.bepo.foodrecipes.models.FoodJoke
 import kr.co.bepo.foodrecipes.models.FoodRecipe
 import retrofit2.Response
 import javax.inject.Inject
@@ -15,5 +16,9 @@ class RemoteDataSource @Inject constructor(
 
     suspend fun searchRecipes(searchQuery: Map<String, String>): Response<FoodRecipe> {
         return foodRecipesApi.searchRecipes(searchQuery)
+    }
+
+    suspend fun getFoodJoke(apiKey: String): Response<FoodJoke> {
+        return foodRecipesApi.getFoodJoke(apiKey)
     }
 }

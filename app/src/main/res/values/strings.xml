@@ -48,6 +48,9 @@
     <string name="healthy">Healthy</string>
     <string name="cheap">Cheap</string>
 
+    <!--  Fragment Food Joke  -->
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+
     <!--  Menu Recipes  -->
     <string name="search">Search</string>
 
@@ -59,4 +62,7 @@
 
     <!--  Menu Favorite Recipes  -->
     <string name="delete_all">Delete All</string>
+
+    <!--  Menu Food Joke  -->
+    <string name="share">Share</string>
 </resources>
