@@ -86,12 +86,9 @@ class FavoriteRecipesAdapter(
                 if (!multiSelection) {
                     multiSelection = true
                     requireActivity.startActionMode(this@FavoriteRecipesAdapter)
-                    applySelection(data)
-                    true
-                } else {
-                    multiSelection = false
-                    false
                 }
+                applySelection(data)
+                true
             }
         }
 
@@ -121,6 +118,7 @@ class FavoriteRecipesAdapter(
             when (selectedRecipes.size) {
                 0 -> {
                     actionMode.finish()
+                    multiSelection = false
                 }
                 1 -> {
                     actionMode.title = "${selectedRecipes.size} item selected"
