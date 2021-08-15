@@ -70,8 +70,6 @@ dependencies {
     //Dagger - Hilt
     implementation "com.google.dagger:hilt-android:$hiltVersion"
     kapt "com.google.dagger:hilt-android-compiler:$hiltVersion"
-    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hiltAndroidXVersion"
-    kapt "androidx.hilt:hilt-compiler:$hiltAndroidXVersion"
 
     // Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
@@ -90,7 +88,6 @@ dependencies {
 
     // Shimmer
     implementation "com.facebook.shimmer:shimmer:$shimmerVersion"
-    implementation "com.todkars:shimmer-recyclerview:$shimmerRecyclerviewVersion"
 
     // Jsoup
     implementation "org.jsoup:jsoup:$jsoupVersion"

@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -116,8 +117,8 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     private fun setupRecyclerView() = with(binding) {
-        shimmerRecyclerView.adapter = adapter
-        shimmerRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
         showShimmerEffect()
     }
 
@@ -143,6 +144,7 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
                 is NetworkResult.Success -> {
                     hideShimmerEffect()
                     response.data?.let { adapter.setData(it) }
+                    recipesViewModel.saveMealAndDietType()
                 }
                 is NetworkResult.Error -> {
                     hideShimmerEffect()
@@ -223,10 +225,12 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     private fun showShimmerEffect() = with(binding) {
-        shimmerRecyclerView.showShimmer()
+        shimmerFrameLayout.startShimmer()
+        recyclerView.toGone()
     }
 
     private fun hideShimmerEffect() = with(binding) {
-        shimmerRecyclerView.hideShimmer()
+        shimmerFrameLayout.stopShimmer()
+        recyclerView.toVisible()
     }
 }

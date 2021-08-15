@@ -73,6 +73,7 @@ class DetailsActivity : AppCompatActivity() {
             this@DetailsActivity
         )
 
+        viewPager.isUserInputEnabled = false
         viewPager.adapter = adapter
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = titles[position]
