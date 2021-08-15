@@ -68,8 +68,7 @@ class DetailsActivity : AppCompatActivity() {
         val adapter = PagerAdapter(
             resultBundle,
             fragments,
-            supportFragmentManager,
-            lifecycle
+            this@DetailsActivity
         )
 
         viewPager.adapter = adapter
