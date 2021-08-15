@@ -64,6 +64,8 @@ class FavoriteRecipesAdapter(
                 )
             }
 
+            saveItemStateOnScroll(data)
+
             /**
              * Single Click Listener
              */
@@ -89,6 +91,16 @@ class FavoriteRecipesAdapter(
                 }
                 applySelection(data)
                 true
+            }
+
+
+        }
+
+        private fun saveItemStateOnScroll(currentRecipe: FavoritesEntity) {
+            if (selectedRecipes.contains(currentRecipe)) {
+                changeRecipeStyle(R.color.cardBackgroundLightColor, R.color.primaryColor)
+            } else {
+                changeRecipeStyle(R.color.cardBackgroundColor, R.color.strokeColor)
             }
         }
 
@@ -145,7 +157,10 @@ class FavoriteRecipesAdapter(
 
     override fun onBindViewHolder(holder: FavoriteRecipesViewHolder, position: Int) {
         favoriteRecipesViewHolders.add(holder)
-        holder.bind(favoriteRecipes[position])
+
+        val currentRecipe = favoriteRecipes[position]
+
+        holder.bind(currentRecipe)
     }
 
     override fun getItemCount(): Int {
